@@ -1,6 +1,6 @@
 ## Reddit Dead Flairing Thing
 
-A bot that posts images to many subreddits at certain times of the day.
+A bot that adds flair to posts that have been reported N times with a chosen keyword
 
 ![](ss.jpg)
 

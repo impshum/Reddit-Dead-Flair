@@ -13,6 +13,7 @@ reddit_client_secret = config['REDDIT']['reddit_client_secret']
 reddit_target_subreddit = config['REDDIT']['reddit_target_subreddit']
 max_reports = int(config['SETTINGS']['max_reports'])
 flair_text = config['SETTINGS']['flair_text']
+keyword = config['SETTINGS']['keyword']
 
 reddit = praw.Reddit(
     username=reddit_user,
@@ -68,21 +69,13 @@ def insert_row(conn, submission, submission_id, author):
             submission.mod.flair(text=flair_text)
 
 
-def read_db(conn):
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM users")
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-
-
 def main():
     conn = db_connect()
 
     for submission in reddit.subreddit(reddit_target_subreddit).new(limit=None):
         for comment in submission.comments:
             comment_body = comment.body
-            if '!dead' in comment_body:
+            if keyword in comment_body:
                 insert_row(conn, submission, submission.id, comment.author.name)
 
 
