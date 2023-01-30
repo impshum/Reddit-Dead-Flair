@@ -1,6 +1,6 @@
 ## Reddit Dead Flairing Thing
 
-A bot that adds flair to posts that have been reported N times with a chosen keyword
+A bot that adds flair to posts that have been reported N times with a chosen keyword.
 
 ![](ss.jpg)
 
